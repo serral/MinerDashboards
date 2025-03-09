@@ -28,15 +28,16 @@ Note: Configure all variables within ```< >``` to reflect your settings.
 ```shell
 #!/bin/bash
 apt -y update
-echo "y" | sudo ufw enable
-ufw allow 8086/tcp
+#echo "y" | sudo ufw enable
+#ufw allow 8086/tcp
 echo "deb https://repos.influxdata.com/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 source /etc/lsb-release
 echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 apt -y install curl
 apt -y install jq
-apt -y install influxdb
+#apt -y install influxdb
+apt -y install influxdb2
 apt -y install influxdb-client
 service influxdb start
 curl -POST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE MoneroMetrics WITH DURATION 30d"
