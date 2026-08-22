@@ -1,10 +1,10 @@
 #!/bin/bash
 #XMRValue.sh
 
-# Requires: CMC_PRO_API_KEY, INFLUX_HOST, INFLUX_ORG, INFLUX_BUCKET, INFLUX_TOKEN
+# Requires: CMC_API_KEY, INFLUX_HOST, INFLUX_ORG, INFLUX_BUCKET, INFLUX_TOKEN
 
 XMRMetrics=$(curl -s -X GET \
-  -H "X-CMC_PRO_API_KEY: ${CMC_PRO_API_KEY}" \
+  -H "X-CMC_API_KEY: ${CMC_API_KEY}" \
   -H "Accept: application/json" \
   -d "symbol=XMR" -G \
   https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest)
