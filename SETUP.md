@@ -377,9 +377,3 @@ curl -i -XPOST 'http://<IP>:<PORT>/write?db=MoneroMetrics' --data-binary "Wallet
 - [Telegraf Windows Service](https://docs.influxdata.com/telegraf/v1/administer/run-as-service/)
 - [CoreTempTelegraf](https://tomk.xyz/k/coretemptelegraf)
 - [Monero Wallet RPC](https://docs.getmonero.org/rpc-library/wallet-rpc/)
-
-## Donations
-
-If you find this information helpful, donations are greatly appreciated!
-
-XMR:47zEuqnGse6LBQMF9hnRGxGn7bLgJQXzZThjqFMFsqb152PVmiPP5eXfK7vNPpQTX5W5BmAqqu6DeVdUrT7nG5NyMNxvMr2
