@@ -7,6 +7,60 @@
 3. CPU temperature metrics are only compatable on Windows miners.
 4. These instructions assume that miners, proxy, and InfluxDB are on the same network. Port forwarding is required otherwise.
 
+## Environment Setup (direnv)
+
+All host/port/credential values (miner IPs, wallet RPC host, InfluxDB token, CoinMarketCap key, etc.) are read from environment variables rather than being hardcoded in the scripts. [direnv](https://direnv.net/) is used to load these automatically whenever you `cd` into the project directory.
+
+1. Install direnv.
+
+    ```shell
+    # macOS
+    brew install direnv
+
+    # Debian/Ubuntu
+    apt -y install direnv
+    ```
+
+2. Hook direnv into your shell (one-time setup).
+
+    Add the appropriate line to the end of your shell config, then restart the shell:
+
+    ```shell
+    # ~/.bashrc
+    eval "$(direnv hook bash)"
+
+    # ~/.zshrc
+    eval "$(direnv hook zsh)"
+    ```
+
+3. Create an `.envrc` that loads values from a `.env` file.
+
+    ```shell
+    echo 'dotenv_if_exists .env' > .envrc
+    ```
+
+    Keeping the actual values in `.env` (a plain `KEY=value` file) rather than directly in `.envrc` keeps them usable by other tools (Docker Compose, etc.) that also read `.env` files.
+
+4. Copy the example env file and fill in your real values.
+
+    ```shell
+    cp .env.example .env
+    ```
+
+    Edit `.env` with the miner/proxy/wallet/power-plug hosts and ports, your MoneroOcean wallet address, CoinMarketCap API key, and InfluxDB connection details.
+
+5. Allow direnv to load the file.
+
+    ```shell
+    direnv allow
+    ```
+
+    From then on, every variable in `.env` is exported automatically whenever you're in this directory (and unset when you leave it), and the scripts in `Metric Scrapers/` will pick them up without any further editing.
+
+    Re-run `direnv allow` any time you edit `.envrc` or `.env` — direnv re-blocks on every change as a safety measure.
+
+    Both `.envrc` and `.env` are gitignored, so real hosts/tokens never get committed. Only `.env.example` (with placeholder values) is tracked.
+
 ## Database Setup
 
 1. Install InfluxDB.
@@ -139,7 +193,7 @@ monero-wallet-rpc.exe --wallet-file <WALLET_FILE> --rpc-bind-port <PORT> --daemo
 
 ## Metric Scraping
 
-   Note: In each bash script, configure all variables within ```< >``` to reflect your settings.
+   Note: The scripts in `Metric Scrapers/` read hosts, ports, and credentials from environment variables (see [Environment Setup (direnv)](#environment-setup-direnv) above) rather than inline placeholders. The examples below are kept as originally written for reference.
 
 1. Create a bash script for each miner to get metrics from the XMRig API and write to InfluxDB.
 

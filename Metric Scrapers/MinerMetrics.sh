@@ -13,7 +13,7 @@
 # HashRate=$(echo $var1)
 # UpTime=$(echo $var3)
 
-MinerStats=$(curl -X GET -H "Content-Type: application/json" http://<IP>:<PORT>/2/summary)
+MinerStats=$(curl -X GET -H "Content-Type: application/json" "http://${MINER_HOST}:${MINER_PORT}/2/summary")
 
 HashRate=$(echo $MinerStats | jq -r '.hashrate.total[0]')
 Miner=$(echo $MinerStats | jq -r '.worker_id')

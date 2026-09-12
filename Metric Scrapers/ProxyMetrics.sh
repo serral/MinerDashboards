@@ -1,7 +1,7 @@
 #!/bin/bash
 #ProxyMetrics.sh
 
-ProxyStats=$(curl -X GET -H "Content-Type: application/json" http://<IP>:<PORT>/2/summary)
+ProxyStats=$(curl -X GET -H "Content-Type: application/json" "http://${PROXY_HOST}:${PROXY_PORT}/2/summary")
 
 MinerCount=$(echo $ProxyStats | jq -r '.miners.now')
 UpTime=$(echo $ProxyStats | jq -r '.uptime')

@@ -5,3 +5,4 @@ ENV.txt
 .direnv/
 .env
 .tmp/
+*.log

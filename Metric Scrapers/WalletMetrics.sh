@@ -2,8 +2,7 @@
 #WalletMetrics.sh
 
 
-#WalletBalance=$(curl http://<IP>:<PORT>/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0,1]}}' -H 'Content-Type: application/json')
-WalletBalance=$(curl http://10.0.0.105:18083/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0]}}' -H 'Content-Type: application/json')
+WalletBalance=$(curl "http://${WALLET_HOST}:${WALLET_PORT}/json_rpc" -d '{"jsonrpc":"2.0","id":"0","method":"get_balance","params":{"account_index":0,"address_indices":[0]}}' -H 'Content-Type: application/json')
 #address_indices array may vary. Check output of monero-wallet-rpc
 
 
