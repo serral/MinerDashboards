@@ -1,4 +1,4 @@
-# Dashboard Work Log
+# Dashboard Setup Guide
 
 ## Prerequisites
 

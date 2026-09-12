@@ -2,7 +2,7 @@
 
 This repository contains bash scripts that scrape metrics from XMRig miners, XMRig proxies, GMiners, CoreTemp, the MoneroOcean pool, CoinMarketCap, Wemo Insight power plugs, and Monero wallets in order to write to InfluxDB for display on Grafana dashboards.
 
-For full setup instructions (InfluxDB, XMRig API config, direnv, cron, Grafana queries), see [WORKLOG.md](WORKLOG.md).
+For full setup instructions (InfluxDB, XMRig API config, direnv, cron, Grafana queries), see [SETUP.md](SETUP.md).
 
 ## Credits
 
@@ -10,7 +10,7 @@ This project is a fork of [MrClappy/MinerDashboards](https://github.com/MrClappy
 
 - Migrated from InfluxDB 1.x to InfluxDB 2.x (`/api/v2/write`, org/bucket/token auth instead of an unauthenticated `/write?db=` endpoint).
 - Removed hardcoded IPs, ports, and API keys from the scripts in favor of environment variables (`INFLUX_HOST`, `INFLUX_TOKEN`, `MINER_HOST`, `WALLET_HOST`, `CMC_API_KEY`, etc.).
-- Added [direnv](https://direnv.net/) support (`.env.example`) so those environment variables are loaded automatically per-project instead of being edited into the scripts by hand. See the [Work Log](../main/WORKLOG.md#environment-setup-direnv) for setup steps.
+- Added [direnv](https://direnv.net/) support (`.env.example`) so those environment variables are loaded automatically per-project instead of being edited into the scripts by hand. See [SETUP.md](SETUP.md#environment-setup-direnv) for setup steps.
 - Added a failure guard to `XMRValue.sh` so a failed/rate-limited CoinMarketCap call skips the InfluxDB write instead of writing `null`.
 - Stopped tracking `.DS_Store` and other local artifacts.
 
