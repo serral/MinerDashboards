@@ -1,3 +1,7 @@
 
 ENV.txt
 .DS_Store
+.envrc
+.direnv/
+.env
+.tmp/
